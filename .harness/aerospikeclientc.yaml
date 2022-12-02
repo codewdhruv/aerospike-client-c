@@ -32,7 +32,18 @@ pipeline:
                   identifier: Setup_Aerospike_Database
                   spec:
                     shell: Sh
-                    command: ./install_libev
+                    command: |-
+                      ./install_libev
+                      make EVENT_LIB=libev
+                      make EVENT_LIB=libev test
+                      make clean
+                      ./install_libuv
+                      make EVENT_LIB=libuv
+                      make EVENT_LIB=libuv test
+                      make clean
+                      ./install_libevent
+                      make EVENT_LIB=libevent
+                      make EVENT_LIB=libevent test
               - step:
                   type: Run
                   name: Build Aerospike
