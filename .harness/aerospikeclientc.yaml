@@ -33,7 +33,6 @@ pipeline:
                   spec:
                     shell: Sh
                     command: |-
-                      cd /usr/local/lib
                       ./install_libev
                       make EVENT_LIB=libev
                       make EVENT_LIB=libev test
