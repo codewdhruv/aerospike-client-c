@@ -35,6 +35,7 @@ pipeline:
                     image: reugn/github-action-aerospike@v1
                     shell: Sh
                     command: |-
+                      cd /usr/local/lib
                       ./install_libev
                       make EVENT_LIB=libev
                       make EVENT_LIB=libev test
@@ -46,8 +47,3 @@ pipeline:
                       ./install_libevent
                       make EVENT_LIB=libevent
                       make EVENT_LIB=libevent test
-                    reports:
-                      type: JUnit
-                      spec:
-                        paths:
-                          - /usr/local/lib
