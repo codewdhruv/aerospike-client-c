@@ -37,13 +37,6 @@ pipeline:
                       make EVENT_LIB=libev
                       make EVENT_LIB=libev test
                       make clean
-                      ./install_libuv
-                      make EVENT_LIB=libuv
-                      make EVENT_LIB=libuv test
-                      make clean
-                      ./install_libevent
-                      make EVENT_LIB=libevent
-                      make EVENT_LIB=libevent test
         variables:
           - name: LD_LIBRARY_PATH
             type: String
