@@ -31,6 +31,8 @@ pipeline:
                   name: Setup Aerospike Database
                   identifier: Setup_Aerospike_Database
                   spec:
+                    connectorRef: DhrubajyotiDocker
+                    image: reugn/github-action-aerospike@v1
                     shell: Sh
                     command: |-
                       ./install_libev
@@ -44,20 +46,8 @@ pipeline:
                       ./install_libevent
                       make EVENT_LIB=libevent
                       make EVENT_LIB=libevent test
-              - step:
-                  type: Run
-                  name: Build Aerospike
-                  identifier: Build_Aerospike
-                  spec:
-                    shell: Sh
-                    command: |-
-                      make EVENT_LIB=libev
-                      make EVENT_LIB=libev test
-                      make clean
-                      ./install_libuv
-                      make EVENT_LIB=libuv
-                      make EVENT_LIB=libuv test
-                      make clean
-                      ./install_libevent
-                      make EVENT_LIB=libevent
-                      make EVENT_LIB=libevent test
+                    reports:
+                      type: JUnit
+                      spec:
+                        paths:
+                          - /usr/local/lib
