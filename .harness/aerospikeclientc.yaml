@@ -45,3 +45,8 @@ pipeline:
                       ./install_libevent
                       make EVENT_LIB=libevent
                       make EVENT_LIB=libevent test
+        variables:
+          - name: LD_LIBRARY_PATH
+            type: String
+            description: ""
+            value: /usr/local/lib
